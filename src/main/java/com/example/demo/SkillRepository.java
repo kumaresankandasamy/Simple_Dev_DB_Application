@@ -7,4 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface SkillRepository extends CrudRepository<Skill,Long> {
 	public List<Skill> findByLabel(String label);
 
+	public Skill findOne(long skillId);
+
 }
