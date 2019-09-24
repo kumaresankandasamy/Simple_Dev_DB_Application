@@ -100,8 +100,15 @@ public class Developer {
 		return "Developer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", skills=" + skills + "]";
 	}
-	
-	
-	
+
+	public boolean hasSkill(Skill skill) {
+		for(Skill containedSkill : getSkills()) {
+			if(containedSkill.getId() == skill.getId()) {
+				return true;
+			}
+			
+		}
+		return false;
+	}
 
 }

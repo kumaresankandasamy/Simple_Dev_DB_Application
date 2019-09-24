@@ -40,7 +40,22 @@ public class DevelopersController {
 		
 	}
 	@RequestMapping(value="/developer/{id}/skills",method = RequestMethod.POST)
-	public String developersSkill() {
+	public String developersSkill(@PathVariable long skillId,@PathVariable Model model) {
+		
+		Skill skill =  skillRepository.findOne(skillId);
+		Developer developer = developerRepository.findOne(skillId);
+		if(developer != null) {
+			if(!developer.hasSkill(skill)) {
+				developer.getSkills().add(skill);
+				
+			}
+			developerRepository.save(developer);
+			model.addAttribute("developer", developerRepository.findOne(skillId));
+			model.addAttribute("skills", skillRepository.findAll());
+			return "redirect : /developer/" +developer.getId();
+			}
+		model.addAttribute("developers", developerRepository.findAll());
+		return "redirect : developers";
 		
 	}
 
